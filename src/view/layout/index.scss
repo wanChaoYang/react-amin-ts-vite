@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  aside {
+    width: 260px;
+    background-color: #001529;
+  }
+  section {
+    flex: 1;
+  }
+  header {
+    height: 60px;
+    background-color: aqua;
+  }
+
+  main {
+    flex: 1;
+  }
+}
