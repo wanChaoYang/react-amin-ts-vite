@@ -1,28 +1,23 @@
 import { useRoutes, Navigate } from "react-router-dom";
-import Home from "../view/home";
-import User from "../view/user";
-import Layout from "../view/layout";
+import Login from "@/view/login";
+import Home from "@/view/home";
+import User from "@/view/user";
+import Layout from "@/view/layout";
+import GoodsMgt from "@/view/GoodsMgt";
+import OrderMgt from "@/view/orderMgt";
+import AddGoods from "@/view/addGoods";
 export const routers: Array<object> = [
-  // {
-  //   path: "/",
-  //   element: <Navigate to="/layout/home" />,
-  //   label: "首页",
-  //   key: "/",
-  // },
-  {
-    path: "/",
-    element: <Layout />,
-    label: "首页",
-    key: "layout/home",
-  },
+  { path: "/", element: <Navigate to="/login" /> },
+  { path: "login", element: <Login /> },
   {
     path: "/layout",
     element: <Layout />,
-    label: "控制台",
-    key: "layout",
     children: [
-      { path: "home", element: <Home />, label: "首页", key: "home" },
-      { path: "user", element: <User />, label: "用户", key: "user" },
+      { path: "home", element: <Home /> },
+      { path: "orderMgt", element: <OrderMgt /> },
+      { path: "addGoods", element: <AddGoods /> },
+      { path: "goodsMgt", element: <GoodsMgt /> },
+      { path: "user", element: <User /> },
     ],
   },
 ];

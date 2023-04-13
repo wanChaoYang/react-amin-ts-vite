@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Menu } from "antd";
 import type { MenuProps } from "antd";
-import { MENU_LIST } from "@/const/index";
+import { routers } from "@/router/index";
 import { useNavigate } from "react-router-dom";
 type MenuItem = Required<MenuProps>["items"][number];
 function Aside() {
   const navigate = useNavigate();
-  const items: MenuItem[] = MENU_LIST;
+  const routerList: any = routers[0];
+  const children = routerList.children;
+  const items: MenuItem[] = children;
   const [current, setCurrent] = useState("home");
   const onClick: MenuProps["onClick"] = (e) => {
     setCurrent(e.key);
