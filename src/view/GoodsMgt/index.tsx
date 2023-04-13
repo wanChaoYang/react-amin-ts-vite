@@ -1,6 +1,10 @@
-
+import { Table } from "./components";
 function GoodsMgt() {
-  return <div>商品管理</div>;
+  return (
+    <div>
+      <Table />
+    </div>
+  );
 }
 
 export default GoodsMgt;
