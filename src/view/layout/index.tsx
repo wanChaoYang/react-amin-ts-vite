@@ -9,7 +9,7 @@ function Layout() {
   store.subscribe(() => {
     console.log("订阅查看数据变化", store.getState());
     const store_data = store.getState();
-    setCount(() => store_data.count);
+    // setCount(() => store_data.count);
   });
   return (
     <div className="container">
