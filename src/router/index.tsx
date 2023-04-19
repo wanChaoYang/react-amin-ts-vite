@@ -1,17 +1,12 @@
+import React from "react";
 import { useRoutes, Navigate } from "react-router-dom";
-import Login from "@/view/login";
-import Home from "@/view/home";
-import User from "@/view/user";
 import Layout from "@/view/layout";
-import GoodsMgt from "@/view/GoodsMgt";
-import OrderMgt from "@/view/orderMgt";
-import AddGoods from "@/view/addGoods";
-import Error from "@/view/error/404";
+import lazyLoad from "./lazyLoad";
 export const routers: Array<object> = [
   { path: "/", element: <Navigate to="/login" /> },
   {
     path: "/login",
-    element: <Login />,
+    element: lazyLoad(React.lazy(() => import("@/view/login"))),
     meta: {
       unwntedAuth: true, //不需要登录权限
       title: "登录页",
@@ -22,28 +17,36 @@ export const routers: Array<object> = [
     path: "/layout",
     element: <Layout />,
     children: [
-      { path: "home", element: <Home />, meta: { title: "首页", key: "home" } },
+      {
+        path: "home",
+        element: lazyLoad(React.lazy(() => import("@/view/home"))),
+        meta: { title: "首页", key: "home" },
+      },
       {
         path: "orderMgt",
-        element: <OrderMgt />,
+        element: lazyLoad(React.lazy(() => import("@/view/orderMgt"))),
         meta: { title: "定单页", key: "orderMgt" },
       },
       {
         path: "addGoods",
-        element: <AddGoods />,
+        element: lazyLoad(React.lazy(() => import("@/view/addGoods"))),
         meta: { title: "添加商品", key: "addGoods" },
       },
       {
         path: "goodsMgt",
-        element: <GoodsMgt />,
+        element: lazyLoad(React.lazy(() => import("@/view/GoodsMgt"))),
         meta: { title: "商品管理", key: "goodsMgt" },
       },
-      { path: "user", element: <User />, meta: { title: "我的", key: "user" } },
+      {
+        path: "user",
+        element: lazyLoad(React.lazy(() => import("@/view/user"))),
+        meta: { title: "我的", key: "user" },
+      },
     ],
   },
   {
     path: "/404",
-    element: <Error />,
+    element: lazyLoad(React.lazy(() => import("@/view/error/404"))),
     meta: { title: "404", key: "404", unwntedAuth: true },
   },
   {
