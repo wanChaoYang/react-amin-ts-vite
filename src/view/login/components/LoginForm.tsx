@@ -1,10 +1,18 @@
 import { Button, Form, Input } from "antd";
 import { UserOutlined, UnlockOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import { login } from "@/api/login";
 function LoginForm() {
   const navigate = useNavigate();
   const onFinish = (values: { username: string; password: string }) => {
     console.log("Success:", values);
+    const reqParams = {
+      userName: "",
+      password: "",
+    };
+    login(reqParams).then((res) => {
+      console.log(res.token);
+    });
     /**
      * 1.token是用户的唯一标识
      * 2.登录时后端返回给前端的字符串，作为token
