@@ -7,8 +7,9 @@ function LoginForm() {
   const onFinish = (values: { username: string; password: string }) => {
     console.log("Success:", values);
     const reqParams = {
-      userName: "",
-      password: "",
+      userName: "13713746864",
+      password: "111111",
+      code: "123456",
     };
     login(reqParams).then((res) => {
       console.log(res.token);

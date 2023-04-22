@@ -19,5 +19,17 @@ export default defineConfig({
     alias: {
       '@': resolve(__dirname, './src')
     }
+  },
+  server: {
+    port: 4000,
+    host: "0.0.0.0",
+    open: true,
+    proxy: {
+      '^/api': {
+        target: 'http://v3.web-jshtml.cn',
+        changeOrigin: true,
+        rewrite: (path) => path.replace("/api", '/api')
+      },
+    }
   }
 })

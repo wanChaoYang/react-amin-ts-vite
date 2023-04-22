@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosError, AxiosResponse } from 'axios';
 //创建axios实例
 const instance: AxiosInstance = axios.create({
-    baseURL: "https://some-domain.com/api/",
+    baseURL: "",
     timeout: 1000,
     headers: { "X-Custom-Header": "foobar" }
 })
