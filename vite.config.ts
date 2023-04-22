@@ -26,7 +26,7 @@ export default defineConfig({
     open: true,
     proxy: {
       '^/api': {
-        target: 'http://v3.web-jshtml.cn',
+        target: 'https://www.fastmock.site/mock/1f9f19ae92bb7910af122a5c362efc5e/react_vite',
         changeOrigin: true,
         rewrite: (path) => path.replace("/api", '/api')
       },

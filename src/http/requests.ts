@@ -1,9 +1,11 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosError, AxiosResponse } from 'axios';
 //创建axios实例
 const instance: AxiosInstance = axios.create({
-    baseURL: "",
-    timeout: 1000,
-    headers: { "X-Custom-Header": "foobar" }
+    baseURL: "https://www.fastmock.site/mock/1f9f19ae92bb7910af122a5c362efc5e/react_vite",
+    timeout: 5000,
+    headers: {
+        "X-Custom-Header": "foobar"
+    }
 })
 
 //请求拦截
@@ -14,7 +16,7 @@ const instance: AxiosInstance = axios.create({
 instance.interceptors.request.use((config: any) => {
     //添加token到请求头
     if (config && config.headers) {
-        config.headers.token = "dasdsakjkfjawijok"
+        // config.headers.token = "dasdsakjkfjawijok"
     }
     return config
 }, (error: AxiosError) => {
@@ -42,10 +44,10 @@ instance.interceptors.response.use((response: AxiosResponse) => {
 //请求方式封装
 const http = {
     get<T = any>(url: string, config?: AxiosRequestConfig): Promise<T> {
-        return instance.post(url, config)
+        return instance.get(url, config);
     },
     post<T = any>(url: string, data?: object, config?: AxiosRequestConfig): Promise<T> {
-        return instance.post(url, data, config)
+        return instance.post(url, data, config);
     }
 }
 export default http;
