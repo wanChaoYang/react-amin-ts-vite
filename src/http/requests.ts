@@ -1,4 +1,11 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosError, AxiosResponse } from 'axios';
+import { getToken } from '@/utils/cookies';
+/**接口返回的对象 */
+interface Result<T> {
+    data: T;
+    code: string;
+    message: string
+}
 //创建axios实例
 const instance: AxiosInstance = axios.create({
     baseURL: "https://www.fastmock.site/mock/1f9f19ae92bb7910af122a5c362efc5e/react_vite",
@@ -15,8 +22,9 @@ const instance: AxiosInstance = axios.create({
  */
 instance.interceptors.request.use((config: any) => {
     //添加token到请求头
-    if (config && config.headers) {
-        // config.headers.token = "dasdsakjkfjawijok"
+    const token: string = getToken();
+    if (config && config.headers && token) {
+        config.headers.token = token
     }
     return config
 }, (error: AxiosError) => {
@@ -26,7 +34,12 @@ instance.interceptors.request.use((config: any) => {
 //响应拦截
 instance.interceptors.response.use((response: AxiosResponse) => {
     //2XX 范围内状态码都会触发该函数
-    return response;
+    const data = response.data;
+    if (data.code === "0") {
+        return data
+    } else {
+        return Promise.reject(data)
+    }
 }, (error: AxiosError) => {
     //超出 2XX 范围状态码都会触发该函数
     const status = error.response?.status;
@@ -43,10 +56,10 @@ instance.interceptors.response.use((response: AxiosResponse) => {
 
 //请求方式封装
 const http = {
-    get<T = any>(url: string, config?: AxiosRequestConfig): Promise<T> {
+    get<T = any>(url: string, config?: AxiosRequestConfig): Promise<Result<T>> {
         return instance.get(url, config);
     },
-    post<T = any>(url: string, data?: object, config?: AxiosRequestConfig): Promise<T> {
+    post<T = any>(url: string, data?: object, config?: AxiosRequestConfig): Promise<Result<T>> {
         return instance.post(url, data, config);
     }
 }

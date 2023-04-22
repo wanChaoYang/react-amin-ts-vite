@@ -2,6 +2,9 @@ import { Button, Form, Input } from "antd";
 import { UserOutlined, UnlockOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { login } from "@/api/login";
+import store from "@/redux";
+import { setToken } from "@/redux/modules/globle/actions";
+import { setTokenValue } from "@/utils/cookies";
 function LoginForm() {
   const navigate = useNavigate();
   const onFinish = (values: { username: string; password: string }) => {
@@ -12,14 +15,16 @@ function LoginForm() {
     //   code: "123456",
     // };
     login().then((res) => {
-      console.log(res.token);
+      const token = res.data.token;
+      store.dispatch(setToken(token));
+      setTokenValue(token);
+      /**
+       * 1.token是用户的唯一标识
+       * 2.登录时后端返回给前端的字符串，作为token
+       * 3.前端存在cookies
+       */
+      navigate("/layout/home");
     });
-    /**
-     * 1.token是用户的唯一标识
-     * 2.登录时后端返回给前端的字符串，作为token
-     * 3.前端存在cookies
-     */
-    navigate("/layout/home");
   };
 
   const onFinishFailed = (errorInfo: any) => {

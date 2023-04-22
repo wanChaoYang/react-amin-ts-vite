@@ -1,7 +1,8 @@
 import { AnyAction } from "redux"
+import { getToken } from '@/utils/cookies'
 //定义数据
 const initStore = {
-    token: "",
+    token: getToken() || "",
     name: "A总",
 };
 //关联action

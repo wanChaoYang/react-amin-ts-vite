@@ -1,2 +1,3 @@
 import Aside from "./Aside";
-export { Aside };
+import Head from "./Head";
+export { Aside ,Head};
