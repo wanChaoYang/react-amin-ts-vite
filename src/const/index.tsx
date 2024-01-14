@@ -16,4 +16,5 @@ export const MENU_LIST = [
     ],
   },
   { label: "个人中心", key: "user", icon: <SettingOutlined /> },
+  { label: "聊天室", key: "chatRoom", icon: <SettingOutlined /> },
 ];

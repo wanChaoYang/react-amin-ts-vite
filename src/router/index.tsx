@@ -24,23 +24,28 @@ export const routers: Array<object> = [
       },
       {
         path: "orderMgt",
-        element: lazyLoad(React.lazy(() => import("@/view/orderMgt"))),
+        element: lazyLoad(React.lazy(() => import("@/view/productManagement/orderMgt"))),
         meta: { title: "定单页", key: "orderMgt" },
       },
       {
         path: "addGoods",
-        element: lazyLoad(React.lazy(() => import("@/view/addGoods"))),
+        element: lazyLoad(React.lazy(() => import("@/view/productManagement/addGoods"))),
         meta: { title: "添加商品", key: "addGoods" },
       },
       {
         path: "goodsMgt",
-        element: lazyLoad(React.lazy(() => import("@/view/GoodsMgt"))),
+        element: lazyLoad(React.lazy(() => import("@/view/productManagement/GoodsMgt"))),
         meta: { title: "商品管理", key: "goodsMgt" },
       },
       {
         path: "user",
         element: lazyLoad(React.lazy(() => import("@/view/user"))),
         meta: { title: "我的", key: "user" },
+      },
+      {
+        path: "chatRoom",
+        element: lazyLoad(React.lazy(() => import("@/view/chatRoom"))),
+        meta: { title: "聊天室", key: "chat" },
       },
     ],
   },
